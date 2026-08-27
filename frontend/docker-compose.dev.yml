@@ -1,0 +1,36 @@
+services:
+  frontend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: cover_frontend_dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - WATCHPACK_POLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+      - ODOO_INTERNAL_URL=http://host.docker.internal:8069
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./package.json:/app/package.json
+      - ./next.config.ts:/app/next.config.ts
+      - ./tsconfig.json:/app/tsconfig.json
+      - frontend_node_modules:/app/node_modules
+      - frontend_dot_next:/app/.next
+      - pnpm_store_cache:/root/.local/share/pnpm/store
+
+volumes:
+  frontend_node_modules:
+    name: cover_frontend_node_modules
+  frontend_dot_next:
+    name: cover_frontend_dot_next
+  pnpm_store_cache:
+    name: cover_pnpm_store_cache

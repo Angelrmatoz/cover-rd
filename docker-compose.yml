@@ -1,0 +1,75 @@
+services:
+  # ==========================================
+  # 1. Base de Datos Relacional (PostgreSQL 18)
+  # ==========================================
+  db:
+    image: postgres:18
+    container_name: cover_postgres_db
+    restart: unless-stopped
+    env_file:
+      - backend/.env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+
+  # ==========================================
+  # 2. Servidor Backend & API REST (Odoo 19)
+  # ==========================================
+  backend:
+    image: odoo:19.0
+    container_name: cover_odoo_backend
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    env_file:
+      - backend/.env
+    volumes:
+      - ./backend/custom_addons:/mnt/extra-addons
+      - ./backend/config:/etc/odoo
+      - odoo-web-data:/var/lib/odoo
+
+  # ==========================================
+  # 3. Aplicación Web Frontend (Next.js 16)
+  # ==========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: dev
+    container_name: cover_nextjs_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - WATCHPACK_POLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+      - ODOO_INTERNAL_URL=http://backend:8069
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/next.config.ts:/app/next.config.ts
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - frontend_node_modules:/app/node_modules
+      - frontend_dot_next:/app/.next
+      - pnpm_store_cache:/root/.local/share/pnpm/store
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:
+  frontend_node_modules:
+    name: cover_root_frontend_node_modules
+  frontend_dot_next:
+    name: cover_root_frontend_dot_next
+  pnpm_store_cache:
+    name: cover_root_pnpm_store_cache

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Event 1 -->
+        <record id="demo_event_1" model="event.event">
+            <field name="name">Neon Nights Santo Domingo</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=2, hour=22)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=3, hour=6)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">500</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_01_1.webp", "/events/party_01_2.webp"]</field>
+        </record>
+        <record id="demo_ticket_1_gen" model="event.event.ticket">
+            <field name="name">General Admission</field>
+            <field name="event_id" ref="demo_event_1"/>
+            <field name="price">1000.0</field>
+            <field name="seats_max">400</field>
+        </record>
+        <record id="demo_ticket_1_vip" model="event.event.ticket">
+            <field name="name">VIP Open Bar</field>
+            <field name="event_id" ref="demo_event_1"/>
+            <field name="price">2500.0</field>
+            <field name="seats_max">100</field>
+        </record>
+
+        <!-- Event 2 -->
+        <record id="demo_event_2" model="event.event">
+            <field name="name">Punta Cana Sunset Beach Party</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=4, hour=16)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=5, hour=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">800</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_02_1.webp", "/events/party_02_2.webp"]</field>
+        </record>
+        <record id="demo_ticket_2_gen" model="event.event.ticket">
+            <field name="name">Early Bird</field>
+            <field name="event_id" ref="demo_event_2"/>
+            <field name="price">1500.0</field>
+            <field name="seats_max">500</field>
+        </record>
+        <record id="demo_ticket_2_vip" model="event.event.ticket">
+            <field name="name">VIP Beach Cabana</field>
+            <field name="event_id" ref="demo_event_2"/>
+            <field name="price">4000.0</field>
+            <field name="seats_max">50</field>
+        </record>
+
+        <!-- Event 3 -->
+        <record id="demo_event_3" model="event.event">
+            <field name="name">Santiago Afro &amp; Latin Vibes</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=5, hour=21)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=6, hour=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">400</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_03_1.webp", "/events/party_03_2.webp"]</field>
+        </record>
+        <record id="demo_ticket_3_gen" model="event.event.ticket">
+            <field name="name">General</field>
+            <field name="event_id" ref="demo_event_3"/>
+            <field name="price">800.0</field>
+            <field name="seats_max">300</field>
+        </record>
+
+        <!-- Event 4 -->
+        <record id="demo_event_4" model="event.event">
+            <field name="name">Santo Domingo Techno Underground</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=7, hour=23)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=8, hour=7)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">350</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_04_1.webp", "/events/party_04_2.webp"]</field>
+        </record>
+
+        <!-- Event 5 -->
+        <record id="demo_event_5" model="event.event">
+            <field name="name">Las Terrenas Full Moon Rave</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=9, hour=20)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=10, hour=6)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">600</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_05_1.webp", "/events/party_05_2.webp"]</field>
+        </record>
+
+        <!-- Event 6 -->
+        <record id="demo_event_6" model="event.event">
+            <field name="name">Reggaeton &amp; Perreo Old School SD</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=11, hour=22)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=12, hour=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">450</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_06_1.webp", "/events/party_06_2.webp"]</field>
+        </record>
+
+        <!-- Event 7 -->
+        <record id="demo_event_7" model="event.event">
+            <field name="name">Rooftop Sessions Piantini</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=12, hour=19)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=13, hour=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">250</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_07_1.webp", "/events/party_07_2.webp"]</field>
+        </record>
+
+        <!-- Event 8 -->
+        <record id="demo_event_8" model="event.event">
+            <field name="name">Cabarete Electronic Beach Fest</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=14, hour=18)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=15, hour=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">700</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_08_1.webp", "/events/party_08_2.webp"]</field>
+        </record>
+
+        <!-- Event 9 -->
+        <record id="demo_event_9" model="event.event">
+            <field name="name">Noche VIP &amp; Champagne Lounge</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=15, hour=22)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=16, hour=5)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">200</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_09_1.webp", "/events/party_09_2.webp"]</field>
+        </record>
+
+        <!-- Event 10 -->
+        <record id="demo_event_10" model="event.event">
+            <field name="name">Santo Domingo Carnival Glow Party</field>
+            <field name="date_begin" eval="(DateTime.today() + relativedelta(days=18, hour=21)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=19, hour=6)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="seats_max">1000</field>
+            <field name="seats_limited" eval="True"/>
+            <field name="image_urls">["/events/party_10_1.webp", "/events/party_10_2.webp"]</field>
+        </record>
+    </data>
+</odoo>

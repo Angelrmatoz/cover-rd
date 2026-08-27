@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.idea
+.vscode
+*.log
+coverage
+playwright-report
+test-results
+blob-report
+.system_generated
+odoo-db-data
+odoo-web-data
+frontend_node_modules
+pnpm_store_cache
