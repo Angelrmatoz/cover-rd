@@ -65,12 +65,31 @@ jobs:
 
       - name: Levantar Backend (PostgreSQL 18 + Odoo 19)
         run: |
+          cat << 'EOF' > backend/.env
+          JWT_SECRET=super_secret_jwt_key_for_testing_12345
+          JWT_EXPIRATION_DAYS=7
+          ADMIN_PASSWORD=admin
+          HOST=db
+          PORT=5432
+          USER=odoo
+          PASSWORD=odoo
+          POSTGRES_DB=postgres
+          POSTGRES_USER=odoo
+          POSTGRES_PASSWORD=odoo
+          EOF
+
           cd backend
           docker compose up -d
           
           echo "Esperando que Odoo inicialice la base de datos y el addon cover_events..."
-          docker exec backend-web-1 odoo --db_host=db --db_user=odoo --db_password=odoo -d postgres -i cover_events --stop-after-init || \
-          docker exec backend_web_1 odoo --db_host=db --db_user=odoo --db_password=odoo -d postgres -i cover_events --stop-after-init || true
+          for i in {1..15}; do
+            if docker compose exec -T web odoo --db_host=db --db_user=odoo --db_password=odoo -d postgres -i cover_events --stop-after-init; then
+              echo "✅ Addon cover_events instalado"
+              break
+            fi
+            echo "Esperando Odoo ($i/15)..."
+            sleep 2
+          done
           
           docker compose restart web
           
