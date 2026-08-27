@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        <!-- Demo Client User -->
+        <record id="demo_user_client" model="res.users">
+            <field name="name">Cliente Demo</field>
+            <field name="login">cliente@cover.do</field>
+            <field name="email">cliente@cover.do</field>
+            <field name="user_role">client</field>
+            <field name="wallet_balance">20000.0</field>
+            <field name="cover_password_hash">a1b2c3d4e5f60718293a4b5c6d7e8f90$76f31f5cc5130027d46bf0ede788ce87487e9816d2cfdd6fde6815237e9dafcc</field>
+        </record>
+
+        <!-- Demo Promoter User -->
+        <record id="demo_user_promoter" model="res.users">
+            <field name="name">Promotor Discoteca Demo</field>
+            <field name="login">promotor@cover.do</field>
+            <field name="email">promotor@cover.do</field>
+            <field name="user_role">promoter</field>
+            <field name="rnc">131889921</field>
+            <field name="business_name">Discoteca Demo VIP</field>
+            <field name="wallet_balance">20000.0</field>
+            <field name="cover_password_hash">a1b2c3d4e5f60718293a4b5c6d7e8f90$76f31f5cc5130027d46bf0ede788ce87487e9816d2cfdd6fde6815237e9dafcc</field>
+        </record>
+
         <!-- Event 1 -->
         <record id="demo_event_1" model="event.event">
             <field name="name">Neon Nights Santo Domingo</field>
